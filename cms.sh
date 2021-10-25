@@ -1,8 +1,25 @@
 #!/bin/bash
 
-command=$1
+SCRIPTS=$(cd `dirname $0` && pwd)/scripts
 
-case $command in 
+. $SCRIPTS/create.sh
+. $SCRIPTS/import.sh
+. $SCRIPTS/list.sh
+. $SCRIPTS/add.sh
+. $SCRIPTS/remove.sh
+. $SCRIPTS/checkout.sh
+. $SCRIPTS/checkin.sh
+. $SCRIPTS/reset.sh
+. $SCRIPTS/log.sh
+. $SCRIPTS/revert.sh
+. $SCRIPTS/snapshot.sh
+. $SCRIPTS/revert-snap.sh
+. $SCRIPTS/forward.sh
+. $SCRIPTS/help.sh
+
+COMMAND=$1
+
+case $COMMAND in 
     init|create)
         echo "Create new repo"
         ;;
