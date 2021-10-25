@@ -12,6 +12,11 @@ add_function() {
         return 0;
     fi
 
+    if [ ! $# -gt 1 ]
+    then
+        echo -e "$PREFIX No file(s) were specified."
+    fi
+
     REPO=$HOME/cms/repositories/$1
 
     if [ ! -e $REPO ]
@@ -22,21 +27,22 @@ add_function() {
 
     FILES=${@:2}
 
+
+
     for f in $FILES
     do
         if [ -e $f ]
         then
             if [ -e $REPO/$f ]
             then
-                echo -e "$PREFIX The file $f already exists in the repository. Did you mean ${CYAN}cms checkin${NOCL}?"
+                echo -e "$PREFIX The file \"$f\" already exists in the repository. Did you mean ${CYAN}cms checkin${NOCL}?"
             else
                 cp $f $REPO
                 echo "$f;in;---" >> $REPO/.cms/file_table
-                echo -e "$PREFIX The file $f has been added to the repository."
+                echo -e "$PREFIX The file \"$f\" has been added to the repository."
             fi
         else
-            echo -e "$PREFIX The file $f does not exist."
+            echo -e "$PREFIX The file \"$f\" does not exist."
         fi
     done
-
 }
