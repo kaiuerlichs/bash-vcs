@@ -1,6 +1,7 @@
 #!/bin/bash
 
 SCRIPTS=$(cd `dirname $0` && pwd)/scripts
+PREFIX="\033[0;36m[CMS]\033[0m"
 
 . $SCRIPTS/create.sh
 . $SCRIPTS/import.sh
@@ -21,13 +22,13 @@ COMMAND=$1
 
 case $COMMAND in 
     init|create)
-        echo "Create new repo"
+        create_function ${@:2}
         ;;
     import)
         echo "Import repo from archive"
         ;;
     list|ls|l)
-        echo "List repo files"
+        echo "List repo files / get list of repositories if no repo is specified"
         ;;
     add|a)
         echo "Add new file to repo"
@@ -63,6 +64,7 @@ case $COMMAND in
         echo "Displaying help page"
         ;;
     *)
-        echo "Command not recognised"
+        echo -e "$PREFIX Sorry, this command is not recognised."
+        # echo "If you want some cheering up, click here: https://twitter.com/SHS_MusicDep/status/1258414589789822978"
         ;;
 esac
