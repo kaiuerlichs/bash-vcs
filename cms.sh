@@ -31,7 +31,7 @@ case $COMMAND in
         echo "List repo files / get list of repositories if no repo is specified"
         ;;
     add|a)
-        echo "Add new file to repo"
+        add_function ${@:2}
         ;;
     remove|r)
         echo "Remove file from repo"
