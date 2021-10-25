@@ -5,6 +5,13 @@ PREFIX="\033[0;36m[CMS]\033[0m"
 create_function() {
     REPOS=$HOME/cms/repositories
 
+    if [[ $1 =~ ['.;!@#$%^&*()\/<>|:'] ]]
+    then
+        echo -e "$PREFIX The specified name is invalid. Avoid the following characters:"
+        echo ". ; ! @ # $ % ^ & * ( ) \ / < > | :"
+        return 0;
+    fi
+
     # Create repos folder if it doesnt exist already
     mkdir -p $REPOS
 
