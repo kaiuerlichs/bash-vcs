@@ -26,6 +26,7 @@ create_function() {
         mkdir .cms
         cd ./.cms
         mkdir logs snapshots versions
+        touch file_table
         cd ..
 
         echo -e "$PREFIX New repository \"$1\" created at $PWD"
