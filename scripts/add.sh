@@ -5,6 +5,8 @@ CYAN="\033[0;36m"
 NOCL="\033[0m"
 
 add_function() {
+    DATE=$(date "+[%d-%m-%Y | %T]")
+
     # Check if any of these characters are within contained within the specfied repository name
     if [[ $1 =~ ['.;!@#$%^&*()\/<>|:'] ]]
     then
@@ -48,6 +50,9 @@ add_function() {
             else
                 # Copy and create file table entry
                 cp $f $REPO
+                mkdir $REPO/.cms/versions/$f
+                touch $REPO/.cms/logs/$f
+                echo "$DATE $USER added the file to the repository" >> $REPO/.cms/logs/$f
                 echo "$f;in;---" >> $REPO/.cms/file_table
                 echo -e "$PREFIX The file \"$f\" has been added to the repository."
             fi
