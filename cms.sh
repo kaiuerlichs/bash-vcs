@@ -60,6 +60,9 @@ case $COMMAND in
     forward|cmd|command)
         echo "Forward a command to be run on the repo"
         ;;
+    versions)
+        echo "Displaying file versions list"
+        ;;
     help)
         echo "Displaying help page"
         ;;
