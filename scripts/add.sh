@@ -48,7 +48,7 @@ add_function() {
             then
                 echo -e "$PREFIX The file \"$f\" already exists in the repository. Did you mean ${CYAN}cms checkin${NOCL}?"
             else
-                # Copy and create file table entry
+                # Copy and create file table entry, versions folder and log file
                 cp $f $REPO
                 mkdir $REPO/.cms/versions/$f
                 touch $REPO/.cms/logs/$f
