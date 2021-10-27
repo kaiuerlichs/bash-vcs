@@ -21,14 +21,14 @@ add_function() {
         echo -e "$PREFIX No repository was specified."
         return 0;
     fi
+    REPO=$HOME/cms/repositories/$1
     # Check whether specified repository exists
     if [ ! -e $REPO ]
     then
         echo -e "$PREFIX The repository \"$1\" does not exist."
         return 0;
     fi
-    REPO=$HOME/cms/repositories/$1
-
+    
     # Check if any files were specified
     if [ ! $# -gt 1 ]
     then

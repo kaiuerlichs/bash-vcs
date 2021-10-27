@@ -19,13 +19,13 @@ checkout_function() {
         echo ". ; ! @ # $ % ^ & * ( ) \ / < > | :"
         return 0;
     fi
+    REPO=$HOME/cms/repositories/$1
     # Check whether specified repository exists
     if [ ! -e $REPO ]
     then
         echo -e "$PREFIX The repository \"$1\" does not exist."
         return 0;
     fi
-    REPO=$HOME/cms/repositories/$1
 
     # Check if any files were specified
     if [ ! $# -gt 1 ]
@@ -35,6 +35,7 @@ checkout_function() {
     fi
     FILE=$2
 
+    # Set destination parameter
     if [ $# -gt 2 ]
     then
         DEST=$3
@@ -52,13 +53,17 @@ checkout_function() {
             # Check if destination exists
             if [ -d $DEST ]
             then
+                # Get user info
                 USERNAME=$(whoami)
                 USERID=$(id -u)
-
+                
+                # Copy file
                 cp $REPO/$FILE $DEST
 
+                # Add log entry
                 echo "$DATE $USERNAME checked out the file" >> $REPO/.cms/logs/$FILE
 
+                # Edit file table
                 OLDLINE=$(grep $FILE $REPO/.cms/file_table)
                 NEWLINE="$FILE;out;$USERNAME;$USERID"
                 sed -i "s/$OLDLINE/$NEWLINE/g" $FILE $REPO/.cms/file_table
