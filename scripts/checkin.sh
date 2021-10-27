@@ -57,12 +57,15 @@ checkin_function() {
                 read -p "$(echo -e "$PREFIX Show diff view? [y/N] ")" option
                 case $option in
                     [Yy]* ) 
+                        # Show diff view for original and replacement file
                         echo -e "$PREFIX Displaying diff for file checkin on $FILE"
                         diff $REPO/$FILE $FILE
+
+                        # Confirm user wants to continue
                         read -p "$(echo -e "$PREFIX Do you still wish to check-in? [Y/n] ")" option
                         case $option in
                             [Nn]* ) 
-                                echo -e "$PREFIX Aborting..."
+                                echo -e "$PREFIX Aborting checkin..."
                                 return 0;
                                 ;;
                         esac
