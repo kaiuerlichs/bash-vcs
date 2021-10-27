@@ -53,7 +53,7 @@ add_function() {
                 mkdir $REPO/.cms/versions/$f
                 touch $REPO/.cms/logs/$f
                 echo "$DATE $USER added the file to the repository" >> $REPO/.cms/logs/$f
-                echo "$f;in;---" >> $REPO/.cms/file_table
+                echo "$f;in;none;none" >> $REPO/.cms/file_table
                 echo -e "$PREFIX The file \"$f\" has been added to the repository."
             fi
         else
