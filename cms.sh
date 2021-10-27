@@ -37,10 +37,10 @@ case $COMMAND in
         echo "Remove file from repo"
         ;;
     checkout|out)
-        echo "Checkout file from repo"
+        checkout_function ${@:2}
         ;;
     checkin|in)
-        echo "Checkin file to repo"
+        checkin_function ${@:2}
         ;;
     reset)
         echo "Reset checkout state of file"
