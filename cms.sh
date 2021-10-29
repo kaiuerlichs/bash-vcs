@@ -43,7 +43,7 @@ case $COMMAND in
         checkin_function ${@:2}
         ;;
     reset)
-        echo "Reset checkout state of file"
+        reset_function ${@:2}
         ;;
     log)
         echo "Show log file for file"
