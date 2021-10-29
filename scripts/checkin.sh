@@ -20,7 +20,7 @@ checkin_function() {
         echo ". ; ! @ # $ % ^ & * ( ) \ / < > | :"
         return 0;
     fi
-    REPO=$HOME/cms/repositories/$1
+    REPO=/cms/repositories/$1
     # Check whether specified repository exists
     if [ ! -e $REPO ]
     then
