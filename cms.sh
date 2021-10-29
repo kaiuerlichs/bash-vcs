@@ -46,7 +46,7 @@ case $COMMAND in
         reset_function ${@:2}
         ;;
     log)
-        echo "Show log file for file"
+        log_function ${@:2}
         ;;
     revert)
         echo "Revert file to previous iteration"
@@ -58,13 +58,13 @@ case $COMMAND in
         echo "Revert to snapshot version of repo"
         ;;
     forward|cmd|command)
-        echo "Forward a command to be run on the repo"
+        forward_function ${@:2}
         ;;
     versions)
         echo "Displaying file versions list"
         ;;
     help)
-        echo "Displaying help page"
+        help_function ${@:2}
         ;;
     *)
         echo -e "$PREFIX Sorry, this command is not recognised."
