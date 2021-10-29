@@ -1,6 +1,10 @@
 #!/bin/bash
 # Displays a help page explaining all the commands of the cms script
 
+PREFIX="\033[0;36m[CMS]\033[0m"
+
+help_function () {
+
 echo "Add: add files to a repository."
 echo "Check in: check in files."
 echo "Check out: check out files."
@@ -17,3 +21,4 @@ echo "Revert: revert file to previous iteration."
 echo "Snapshot: create snapshot archive of repository."
 echo "Versions: display file versions list."
 
+}
