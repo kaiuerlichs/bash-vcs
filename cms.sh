@@ -34,7 +34,7 @@ case $COMMAND in
         add_function ${@:2}
         ;;
     remove|r)
-        echo "Remove file from repo"
+        remove_function ${@:2}
         ;;
     checkout|out)
         checkout_function ${@:2}
