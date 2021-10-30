@@ -35,7 +35,7 @@ remove_function() {
     FILE=$2
 
     #validate if file exists and recieve user confirmation
-    if [-f $FILE]; then
+    if [ -f $FILE ]; then
         FILESTATE=$(grep $FILE $REPO/.cms/file_table | cut -d ";" -f 2)
         if [ "$FILESTATE" == "out" ]
         then
