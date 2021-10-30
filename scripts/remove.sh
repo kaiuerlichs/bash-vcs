@@ -2,7 +2,7 @@
 
 PREFIX="\033[0;36m[CMS]\033[0m"
 
-remove_function{
+remove_function() {
 #recieve user input
     DATE=$(date "+[%d-%m-%Y | %T]")
     # Check if a repository was specified
