@@ -35,7 +35,6 @@ remove_function() {
     FILE=$2
 
     #validate if file exists and recieve user confirmation
-<<<<<<< HEAD
     if [-f $FILE]; then
         FILESTATE=$(grep $FILE $REPO/.cms/file_table | cut -d ";" -f 2)
         if [ "$FILESTATE" == "out" ]
@@ -45,10 +44,6 @@ remove_function() {
         fi
 
 
-=======
-    if [ -f $FILE ]
-    then
->>>>>>> 970259df6943c9a154f96c9ee928cfae83818aab
         read -p "$(echo -e "$PREFIX Are you sure you want to delete this file permanently? [y/N] ")" option
         case $option in
             [Yy]* ) 
