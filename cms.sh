@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPTS=$(cd `dirname $0` && pwd)/scripts
+SCRIPTS="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/scripts"
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 . $SCRIPTS/create.sh
