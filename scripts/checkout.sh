@@ -19,7 +19,7 @@ checkout_function() {
         echo ". ; ! @ # $ % ^ & * ( ) \ / < > | :"
         return 0;
     fi
-    REPO=$HOME/cms/repositories/$1
+    REPO=/cms/repositories/$1
     # Check whether specified repository exists
     if [ ! -e $REPO ]
     then
@@ -27,7 +27,7 @@ checkout_function() {
         return 0;
     fi
 
-    # Check if any files were specified
+    # Check if a file was specified
     if [ ! $# -gt 1 ]
     then
         echo -e "$PREFIX No file was specified."

@@ -3,7 +3,7 @@
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 create_function() {
-    REPOS=$HOME/cms/repositories
+    REPOS=/cms/repositories
 
     # Check if any repository name was supplied
     if [ $# -eq 0 ]
@@ -21,7 +21,8 @@ create_function() {
     fi
 
     # Create repos folder if it doesnt exist already
-    mkdir -p $REPOS
+    sudo mkdir -p $REPOS
+    sudo chmod -R 777 $REPOS
     cd $REPOS
 
     # Check if repository already exists
