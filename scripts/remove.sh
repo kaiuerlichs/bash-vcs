@@ -36,6 +36,14 @@ remove_function() {
 
     #validate if file exists and recieve user confirmation
     if [-f $FILE]; then
+        FILESTATE=$(grep $FILE $REPO/.cms/file_table | cut -d ";" -f 2)
+        if [ "$FILESTATE" == "out" ]
+        then
+            echo -e "$PREFIX Cannot delete a file which is already checked out."
+            return 0;
+        fi
+
+
         read -p "$(echo -e "$PREFIX Are you sure you want to delete this file permanently? [y/N] ")" option
         case $option in
             [Yy]* ) 
