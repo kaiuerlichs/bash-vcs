@@ -35,7 +35,8 @@ remove_function() {
     FILE=$2
 
     #validate if file exists and recieve user confirmation
-    if [-f $FILE]; then
+    if [ -f $FILE ]
+    then
         read -p "$(echo -e "$PREFIX Are you sure you want to delete this file permanently? [y/N] ")" option
         case $option in
             [Yy]* ) 
@@ -51,5 +52,7 @@ remove_function() {
                 return 0;
                 ;;
         esac
+    else
+        echo -e "$PREFIX The file \"$FILE\" does not exist in the repository." 
     fi
 }
