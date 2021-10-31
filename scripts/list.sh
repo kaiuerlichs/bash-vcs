@@ -14,7 +14,7 @@ list_function(){
             echo -e "$PREFIX $line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
         done
     else
-    
+        echo "else"
     fi
     
     
