@@ -22,7 +22,7 @@ create_function() {
 
     # Create repos folder if it doesnt exist already
     sudo mkdir -p $REPOS
-    sudo chmod -R 777 $REPOS
+    sudo chmod -R 777 /cms
     cd $REPOS
 
     # Check if repository already exists

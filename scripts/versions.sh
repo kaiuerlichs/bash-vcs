@@ -50,9 +50,11 @@ versions_function() {
     if [ $VERSION_COUNT -ne 0 ]
     then
         echo -e "\nVersions saved for the following timestamps: "
+        COUNTER=1
         ls $VERSIONS | while read ver
         do
-            echo -e "\t$ver"
+            echo -e "$COUNTER) $ver"
+            COUNTER=$((COUNTER+1))
         done
     fi
 }

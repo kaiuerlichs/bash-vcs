@@ -50,7 +50,7 @@ case $COMMAND in
         log_function ${@:2}
         ;;
     revert)
-        echo "Revert file to previous iteration"
+        revert_function ${@:2}
         ;;
     snap|snapshot|export)
         echo "Create snapshot archive of repo"
