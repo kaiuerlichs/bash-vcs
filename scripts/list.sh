@@ -29,8 +29,18 @@ list_function(){
             echo -e "$PREFIX The repository \"$1\" does not exist."
             return 0;
         fi
-        fileTable=$REPO/.cms/file_table
-        column -t -s ";" < $fileTable
+
+        if [ ! -e /cms/.tmp/ ]
+        then
+            mkdir /cms/.tmp/
+        fi
+
+        echo -e "$PREFIX Displaying all files in repository \"$1\"\n"
+
+        tmpfile=/cms/.tmp/tmpfile
+        echo -e "File name;Checked In/Out;Username;User ID" | cat - $REPO/.cms/file_table > $tmpfile
+        column -t -s ";" < $tmpfile
+        rm $tmpfile
     fi
     
     
