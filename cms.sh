@@ -17,6 +17,7 @@ PREFIX="\033[0;36m[CMS]\033[0m"
 . $SCRIPTS/revert-snap.sh
 . $SCRIPTS/forward.sh
 . $SCRIPTS/help.sh
+. $SCRIPTS/versions.sh
 
 COMMAND=$1
 
@@ -61,7 +62,7 @@ case $COMMAND in
         forward_function ${@:2}
         ;;
     versions)
-        echo "Displaying file versions list"
+        versions_function ${@:2}
         ;;
     help)
         help_function ${@:2}
