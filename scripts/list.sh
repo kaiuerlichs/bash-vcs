@@ -9,9 +9,10 @@ list_function(){
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
+        echo -e "$PREFIX Listing all repositories..."
         ls /cms/repositories | while read line
         do
-            echo -e "$PREFIX $line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
+            echo -e "$line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
         done
     else
         echo "else"

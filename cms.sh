@@ -29,7 +29,7 @@ case $COMMAND in
         echo "Import repo from archive"
         ;;
     list|ls|l)
-        echo "List repo files / get list of repositories if no repo is specified"
+        list_function ${@:2}
         ;;
     add|a)
         add_function ${@:2}
