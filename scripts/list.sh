@@ -15,7 +15,22 @@ list_function(){
             echo -e "$line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
         done
     else
-        echo "else"
+        # Check if any of these characters are within contained within the specfied repository name
+        if [[ $1 =~ ['.;!@#$%^&*()\/<>|:'] ]]
+        then
+            echo -e "$PREFIX The specified repository name is invalid. Avoid the following characters:"
+            echo ". ; ! @ # $ % ^ & * ( ) \ / < > | :"
+            return 0;
+        fi
+        REPO=/cms/repositories/$1
+        # Check whether specified repository exists
+        if [ ! -e $REPO ]
+        then
+            echo -e "$PREFIX The repository \"$1\" does not exist."
+            return 0;
+        fi
+        fileTable=$REPO/.cms/file_table
+        column -t -s ";" < $fileTable
     fi
     
     
