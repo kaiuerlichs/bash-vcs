@@ -46,9 +46,11 @@ revert_function() {
         return 0;
     fi
 
+    # Create variables
     VERSIONS=$REPO/.cms/versions/$FILE/
     VERSION_COUNT=$(ls $VERSIONS | wc -l)
 
+    # Check if tmp folder already exists
     if [ ! -e /cms/.tmp/ ]
     then
         mkdir /cms/.tmp/
@@ -56,6 +58,7 @@ revert_function() {
 
     TEMP=/cms/.tmp/$FILE
     
+    # List all versions
     if [ $VERSION_COUNT -ne 0 ]
     then
         echo -e "$PREFIX Versions saved for the following timestamps: "
@@ -67,9 +70,12 @@ revert_function() {
             COUNTER=$((COUNTER+1))
         done < $TEMP
 
+        # Get user selection
         read -p "$(echo -e "$PREFIX Select a version to revert to or \"Quit\": ")" option
+        # If input is numeric
         if [ "$option" -eq "$option" ] 2> /dev/null
         then
+            # Check if version number is valid
             if [ "$option" -gt "0" ] && [ ! "$option" -gt "$VERSION_COUNT" ]
             then
                 REVERT_VER=$(sed -n "${option}p" < $TEMP)
@@ -78,8 +84,10 @@ revert_function() {
                 IDENTIFIER=$(date "+%d-%m-%y-%H-%M-%S")
                 cp $REPO/$FILE $REPO/.cms/versions/$FILE/$IDENTIFIER
 
+                # Copy old version into repo
                 cp $VERSIONS/$REVERT_VER $REPO/$FILE
 
+                # Add log entry
                 USERNAME=$(whoami)
                 echo "$DATE $USERNAME reverted the file to the following version: $REVERT_VER" >> $REPO/.cms/logs/$FILE
 
@@ -90,10 +98,10 @@ revert_function() {
         else
             echo -e "$PREFIX Aborting file revert... "
         fi 
-
     else
         echo -e "$PREFIX There are no versions of \"$FILE\" to revert to."
     fi
 
+    # Remove temp file
     rm $TEMP
 }

@@ -39,6 +39,7 @@ versions_function() {
         return 0; 
     fi
 
+    # Create variables
     VERSIONS=$REPO/.cms/versions/$FILE/
     VERSION_COUNT=$(ls $VERSIONS | wc -l)
     LATEST=$(date -r $REPO/$FILE "+%d-%m-%Y %H:%M:%S")
@@ -47,6 +48,7 @@ versions_function() {
     echo -e "Last file edit: $LATEST"
     echo -e "Total versions: $VERSION_COUNT"
 
+    # List all versions
     if [ $VERSION_COUNT -ne 0 ]
     then
         echo -e "\nVersions saved for the following timestamps: "
