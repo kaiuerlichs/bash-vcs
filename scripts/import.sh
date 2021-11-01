@@ -57,14 +57,21 @@ import_function() {
     fi
 
     # Verify file is tar or zip
-    if [ "${FILE:-7}" == ".tar.gz" ]
+    if [ "${FILE: -7}" == ".tar.gz" ]
     then
         TYPE=tar
-    elif [ "${FILE:-4}" == ".zip" ]
+    elif [ "${FILE: -4}" == ".zip" ]
     then
         TYPE=zip
     else
         echo -e "${PREFIX} The archive needs to be of format .tar.gz or .zip and have the corresponding file extension."
+        return 0
+    fi
+
+    # Verify file exists
+    if [ ! -e "$FILE" ]
+    then
+        echo -e "${PREFIX} The specified file does not exist."
         return 0
     fi
 
@@ -77,22 +84,26 @@ import_function() {
     mkdir $TMP
 
     # Unzip into tmpfolder
-    if[ "$TYPE" == "tar" ]
+    if [ "$TYPE" == "tar" ]
     then
         # Unpack archive
-        tar xcf $FILE -C $TMP
+        tar xzf $FILE --directory $TMP
     else
-        unzip $FILE -d $TMP
+        unzip $FILE -d $TMP > /dev/null
     fi
 
     # Create new repo
     create_function $2 > /dev/null
 
     # Add files to repository
-    ls $TMP | while read f
+    cd $TMP
+    ls | while read file
     do
-        add_function $2 $TMP/$f
+        add_function $2 $file > /dev/null
     done
 
+    echo -e "${PREFIX} The archive needs to be of format .tar.gz or .zip and have the corresponding file extension."
 
+    # Delete temporary files
+    rm -R $TMP
 }
