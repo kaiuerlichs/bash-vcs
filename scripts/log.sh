@@ -19,7 +19,7 @@ PREFIX="\033[0;36m[CMS]\033[0m"
         return 0
     fi
 
-    REPO=$HOME/cms/repositories/$1
+    REPO=/cms/repositories/$1
     # Check whether specified repository exists
     if [ ! -e $REPO ]
     then
@@ -30,18 +30,21 @@ PREFIX="\033[0;36m[CMS]\033[0m"
      # Check if any files were specified
     if [ ! $# -gt 1 ]
     then
-        echo -e "$PREFIX No file(s) were specified."
+        echo -e "$PREFIX No file was specified."
         return 0;
     fi
-    FILES=${@:2}
+    FILE=$2
+
+     # Check whether specified file exists
+    if [ ! -e $REPO/$FILE ]
+    then
+        echo -e "$PREFIX The file \"$1\" does not exist."
+        return 0;
+    fi
 
     #display general log for file
-    cd /cms/repositories/$REPO/.cms/logs/$FILE 
-    ls
-
-    #display common log file: messages
-    tail -n 10 /cms/repositories/$REPO/.cms/logs/$FILE/messages
-    ls
+    less $REPO/.cms/logs/$FILE
+    
 
 
     }
