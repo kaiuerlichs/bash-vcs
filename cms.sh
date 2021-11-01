@@ -53,7 +53,7 @@ case $COMMAND in
         revert_function ${@:2}
         ;;
     snap|snapshot|export)
-        echo "Create snapshot archive of repo"
+        snapshot_function ${@:2}
         ;;
     revert-snap)
         echo "Revert to snapshot version of repo"
