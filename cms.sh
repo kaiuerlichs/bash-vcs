@@ -72,3 +72,5 @@ case $COMMAND in
         # echo "If you want some cheering up, click here: https://twitter.com/SHS_MusicDep/status/1258414589789822978"
         ;;
 esac
+
+exit 0
