@@ -1,0 +1,56 @@
+Create:         [0;36mcms create <repository name>[0m
+                alias init
+                Create a new repository
+                
+Add:            [0;36mcms add <repository> <file(s)>[0m
+                Add file(s) to a repository
+
+Check in:       [0;36mcms checkin <repository> <file>[0m
+                Check in file
+
+Check out:      [0;36mcms checkout <repository> <file>[0m
+                Check out file
+
+Forward:        [0;36mcms forward <repository>[0m
+                Forward command to run on the repository
+
+Help:           [0;36mcms help[0m
+                Help page for commands
+
+Import:         [0;36mcms import <archive file> <repository name>[0m
+                Import repository from archive
+
+List:           [0;36mcms list[0m
+                List all repositories
+
+                [0;36mcms list <repository>[0m
+                List the repository files
+
+Log:            [0;36mcms log <repository> <file>[0m
+                Show log file for selected file
+
+Remove:         [0;36mcms remove <repository> <file>[0m
+                Remove file from repository
+
+Reset:          [0;36mcms reset <repository> <file> <options>[0m
+                -f: forced mode, resets file state even if the user is not the one currently holding check-out rights
+                Reset checkout state of the file
+
+Revert-snap:    [0;36mcms revert-snap <repository> <snapshot>[0m
+                Revert to a previous snapshot version of repository
+
+Revert:         [0;36mcms revert <repository> <file> <version>[0m
+                Revert file to previous iteration
+
+Snapshot:       [0;36mcms snapshot create <repository> <optional destination>[0m
+                Create a snapshot archive of repository
+
+                [0;36mcms snapshot list <repository> [0m
+                List all snapshots of a repository
+
+                [0;36mcms snapshot export <repository>[0m
+                alias snapshot copy
+                Export a snapshot of a repository
+
+Versions:       [0;36mcms versions <repository> <file>[0m
+                Display file versions list
