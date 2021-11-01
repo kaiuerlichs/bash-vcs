@@ -39,9 +39,11 @@ forward_function() {
             if [ "$command" == "ABORT" ]
             then
                 echo -e "$PREFIX Aborting command forwarding..."
+                return 0;
             else
                 echo -e "$PREFIX Command output:"
                 eval $command
+                return 0;
             fi
             ;;
         * )
