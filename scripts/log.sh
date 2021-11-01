@@ -1,10 +1,9 @@
 #!/bin/bash
-# Takes a repo name and file name as parameters
-# Display the log file for the specified file
 
 PREFIX="\033[0;36m[CMS]\033[0m"
-    log_function() {
-   # Check if any repository name was supplied
+
+log_function() {
+    # Check if any repository name was supplied
     if [ $# -eq 0 ]
     then
         echo -e "$PREFIX No repository name was specified."
@@ -35,16 +34,27 @@ PREFIX="\033[0;36m[CMS]\033[0m"
     fi
     FILE=$2
 
-     # Check whether specified file exists
+    # Check whether specified file exists
     if [ ! -e $REPO/$FILE ]
     then
-        echo -e "$PREFIX The file \"$1\" does not exist."
+        echo -e "$PREFIX The file \"$FILE\" does not exist."
         return 0;
     fi
 
-    #display general log for file
-    less $REPO/.cms/logs/$FILE
+    # Check if tmp folder already exists, create tmp file variable
+    if [ ! -e /cms/.tmp/ ]
+    then
+        mkdir /cms/.tmp/
+    fi
+    TMP=/cms/.tmp/log
+
+    # Create temporary log file
+    echo -e "$PREFIX Displaying log file for \"$FILE\"\n" | cat - $REPO/.cms/logs/$FILE > $TMP
+
+    # Display general log for file
+    less -R $TMP
+
+    # Remove temporary file
+    rm $TMP
     
-
-
-    }
+}
