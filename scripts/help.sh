@@ -1,13 +1,25 @@
 #!/bin/bash
-# Displays a help page explaining all the commands of the cms script
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# HELP.SH
+# Displays a help page explaining the commands
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 CYAN="\033[0;36m"
 NOCL="\033[0m"
 
-
 help_function () {
-
+      # Echo all the command descriptions
       echo -e "Add: ${CYAN}cms add <repository> <file(s)>${NOCL}
             Add file(s) to a repository"
       echo -e "Check in: ${CYAN}cms checkin <repository> <file>${NOCL}
@@ -48,4 +60,5 @@ help_function () {
       echo -e "Versions: ${CYAN}cms versions <repository> <file>${NOCL}
             Display file versions list"
 
+      return 0
 }

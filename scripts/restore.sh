@@ -1,14 +1,26 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# REVERT.SH
+# Takes a repo name a file name; allows the user to revert to previous file version
+
+
+
+# Create colour output variables
+PREFIX="\033[0;36m[CMS]\033[0m"
+
+# Import snapshot subscript
 PATHNAME="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
 . $PATHNAME/snapshot.sh
 
 restore_function() {
-    # Get some variable
-    DATE=$(date "+[%d-%m-%Y | %T]")
-    USERNAME=$(whoami)
-    PREFIX="\033[0;36m[CMS]\033[0m"
-
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -30,6 +42,7 @@ restore_function() {
         return 0;
     fi
 
+    # Create relavant variables
     SNAPS=$REPO/.cms/snapshots
     SNAP_COUNT=$(ls $VERSIONS | wc -l)
 
@@ -82,6 +95,8 @@ restore_function() {
                 tar xzf ./.cms/snapshots/$SNAP_VER
 
                 # Append log messages
+                USERNAME=$(whoami)
+                DATE=$(date "+[%d-%m-%Y | %T]")
                 ls ./.cms/logs | while read f
                 do
                     echo "$DATE $USERNAME restored the repository version from ${SNAP_VER::-7}" >> ./.cms/logs/$f
@@ -99,4 +114,6 @@ restore_function() {
         # Remove temp file
         rm $TMP
     fi
+
+    return 0
 }

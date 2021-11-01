@@ -1,10 +1,19 @@
 #!/bin/bash
-# Takes repo as parameter
-# When command is run, display warning about risks of running commands on repo, advise not to run file-changing commands directly and to use snapshots instead
-# Confirm user wants to proceed
-# Take command as user input
-# Run command on repo folder
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# FORWARD.SH
+# Takes a repo name as argument; prompts user to enter a command to be evaluated on the repo
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
     
 forward_function() {
@@ -29,18 +38,25 @@ forward_function() {
         return 0;
     fi
  
+    # Display relevant warnings and get user confirmation
     echo -e "$PREFIX WARNING! Running this command is risky, you are advised to use snapshots when running file changing commands."
-
     read -p "$(echo -e "$PREFIX Are you sure you want to run a command on the repository folder? [y/N] ")" option
+
+    # Case statement for user selection
     case $option in
         [Yy]* ) 
             cd $REPO
+
+            # Prompt user to enter command
             read -p "$(echo -e "$PREFIX Please enter the command you want to run or "ABORT" to cancel: ")" command
+
+            # Check cancel condition
             if [ "$command" == "ABORT" ]
             then
                 echo -e "$PREFIX Aborting command forwarding..."
                 return 0;
             else
+                # Run the command
                 echo -e "$PREFIX Command output:"
                 eval $command
                 return 0;
@@ -51,5 +67,4 @@ forward_function() {
             return 0;
             ;;
     esac
-
 }

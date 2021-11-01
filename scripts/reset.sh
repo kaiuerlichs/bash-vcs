@@ -1,15 +1,22 @@
-# Takes a repo name and a filename (-f flag for forced)
-# Checks if file exists in repo
-# Validate correct user is resetting file in | skip if forced
-# Append a log entry of format "$(date "+[%d-%m-%Y | %T]") $USER reset the file check-out state."
-# Change status of file to "in" on the file table
-# Display success message to user in console
+#!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# RESET.SH
+# Takes a repo name and file name; resets the checkout state, if necessary, forcibly
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 reset_function() {
-    DATE=$(date "+[%d-%m-%Y | %T]")
-
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -55,6 +62,7 @@ reset_function() {
         fi
     fi
 
+    # Check file checkin state
     FILESTATE=$(grep $FILE $REPO/.cms/file_table | cut -d ";" -f 2)
     if [ "$FILESTATE" == "in" ]
     then
@@ -65,10 +73,11 @@ reset_function() {
     # Get user info
     USERNAME=$(whoami)
     USERID=$(id -u)
+    DATE=$(date "+[%d-%m-%Y | %T]")
 
     if [ "$FORCED" -eq 0 ]
     then
-         # Append log message
+        # Append log message
         echo "$DATE $USERNAME reset the filestate FORCIBLY. The file is now checked in." >> $REPO/.cms/logs/$FILE
 
         # Edit file table entry
@@ -98,4 +107,5 @@ reset_function() {
         fi
     fi
 
+    return 0
 }

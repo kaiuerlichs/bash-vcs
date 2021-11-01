@@ -1,8 +1,23 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# CREATE.SH
+# Takes a repo name as argument; creates a new repository and required files
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 create_function() {
+    # Set repo path
     REPOS=/cms/repositories
 
     # Check if any repository name was supplied
@@ -42,4 +57,6 @@ create_function() {
 
         echo -e "$PREFIX New repository \"$1\" created at $PWD"
     fi
+
+    return 0
 }

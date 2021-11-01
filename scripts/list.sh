@@ -1,8 +1,19 @@
 #!/bin/bash
-# Takes either no parameters, or a repo name as parameter
-# Without parameter, display all repositories
-# With repo parameter, display all files in repository
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# LIST.SH
+# Takes either no arguments or a repo name; displays list of repos or files
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 list_function(){
@@ -11,6 +22,7 @@ list_function(){
     then
         echo -e "$PREFIX Listing all repositories..."
         echo -e "$PREFIX Total number of repositories: $(ls /cms/repositories | wc -l)\n"
+        # List all repositories
         ls /cms/repositories | while read line
         do
             echo -e "$line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
@@ -31,6 +43,7 @@ list_function(){
             return 0;
         fi
 
+        # Check if tmp directory exists
         if [ ! -e /cms/.tmp/ ]
         then
             mkdir /cms/.tmp/
@@ -39,11 +52,12 @@ list_function(){
         echo -e "$PREFIX Displaying all files in repository \"$1\""
         echo -e "$PREFIX Total number of files: $(wc -l < $REPO/.cms/file_table)\n"
 
+        # Display all files
         tmpfile=/cms/.tmp/tmpfile
         echo -e "File name;Checked In/Out;Username;User ID" | cat - $REPO/.cms/file_table > $tmpfile
         column -t -s ";" < $tmpfile
         rm $tmpfile
     fi
     
-    
+    return 0
 }

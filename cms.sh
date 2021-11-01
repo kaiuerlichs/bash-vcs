@@ -1,8 +1,24 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+# CMS.SH
+# Handles the main control flow, evaluates the first command argument to decide which function to call
+
+
+
+# Get correct path to scripts folder (same location as cms.sh)
 SCRIPTS="$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )/scripts"
+
+# Set prefix variable
 PREFIX="\033[0;36m[CMS]\033[0m"
 
+# Import subscripts
 . $SCRIPTS/create.sh
 . $SCRIPTS/import.sh
 . $SCRIPTS/list.sh
@@ -19,8 +35,17 @@ PREFIX="\033[0;36m[CMS]\033[0m"
 . $SCRIPTS/help.sh
 . $SCRIPTS/versions.sh
 
+# Verify a command argument was specified
+if [ $# -eq 0 ]
+then
+    echo -e "$PREFIX Please enter a valid command or type help to learn more."
+    exit 0
+fi
+
+# Get first argument
 COMMAND=$1
 
+# Call function according to command argument
 case $COMMAND in 
     init|create)
         create_function ${@:2}
@@ -68,9 +93,10 @@ case $COMMAND in
         help_function ${@:2}
         ;;
     *)
+        # Display warning if incorrect command was passed
         echo -e "$PREFIX Sorry, this command is not recognised."
-        # echo "If you want some cheering up, click here: https://twitter.com/SHS_MusicDep/status/1258414589789822978"
         ;;
 esac
 
+# Return exit code
 exit 0

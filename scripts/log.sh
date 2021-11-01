@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# LOG.SH
+# Takes a repo name and file name; displays the log for the file
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 log_function() {
@@ -57,4 +71,5 @@ log_function() {
     # Remove temporary file
     rm $TMP
     
+    return 0
 }

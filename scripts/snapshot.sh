@@ -1,10 +1,22 @@
 #!/bin/bash
 
-# First parameter "copy" or "export": Takes repo name, snapshot name and destination path
-    # Copy specified snapshot file to destination
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
 
+
+
+# SNAPSHOT.SH
+# Takes a repo name and an operation (potentially more args); executes operation accordingly
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
+# Handle inital function call
 snapshot_function() {
     # Check if operation was specified
     if [ ! $# -gt 0 ]
@@ -12,7 +24,6 @@ snapshot_function() {
         echo -e "$PREFIX Please specify a snapshot operation: create, list or export"
         return 0;
     fi
-
     # Perform relevant operation
     case $1 in
         create)
@@ -30,6 +41,7 @@ snapshot_function() {
     esac
 }
 
+# Takes a repo name and optionally a destination path; creates new repo snapshot
 create_snapshot() {
     # Check if a repository was specified
     if [ $# -eq 0 ]
@@ -76,6 +88,7 @@ create_snapshot() {
     fi
 }
 
+# Takes a repo name; lists all snapshots available for this repo
 list_snapshots() {
     # Check if a repository was specified
     if [ $# -eq 0 ]
@@ -98,7 +111,7 @@ list_snapshots() {
         return 0;
     fi
 
-    # Create variables
+    # Create relevant variables
     SNAPS=$REPO/.cms/snapshots
     SNAP_COUNT=$(ls $SNAPS | wc -l)
     LATEST=$(date -r $REPO "+%d-%m-%Y %H:%M:%S")
@@ -123,6 +136,7 @@ list_snapshots() {
     fi
 }
 
+# Takes a repo name as parameter, copies a snapshot to a user-specified destination
 export_snapshot() {
     # Check if a repository was specified
     if [ $# -eq 0 ]
@@ -145,7 +159,7 @@ export_snapshot() {
         return 0;
     fi
 
-    # Create variables
+    # Create relevant variables
     SNAPS=$REPO/.cms/snapshots
     SNAP_COUNT=$(ls $SNAPS | wc -l)
     LATEST=$(date -r $REPO "+%d-%m-%Y %H:%M:%S")
@@ -155,7 +169,6 @@ export_snapshot() {
     then
         mkdir /cms/.tmp/
     fi
-
     TMP=/cms/.tmp/snaplist
 
     echo -e "$PREFIX Listing snapshots for \"$REPO\"..."
@@ -165,7 +178,7 @@ export_snapshot() {
     then
         echo -e "$PREFIX No snapshots found."
     else
-        # Loop through all snapshots
+        # Loop through all snapshots after storing them in the tmp file
         ls $SNAPS > $TMP
         echo -e "Snapshots saved for the following timestamps: "
         COUNTER=1
@@ -205,4 +218,6 @@ export_snapshot() {
         # Remove temp file
         rm $TMP
     fi
+
+    return 0
 }

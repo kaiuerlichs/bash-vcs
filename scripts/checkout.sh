@@ -1,11 +1,22 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# CHECKOUT.SH
+# Takes a repo name and file name as arguments; marks the file as checked out and provides the user with a copy in PWD
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 checkout_function() {
-
-    DATE=$(date "+[%d-%m-%Y | %T]")
-
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -43,7 +54,7 @@ checkout_function() {
         DEST=./
     fi
 
-    # Check if the file  exists in the repository
+    # Check if the file exists in the repository
     if [ -e $REPO/$FILE ]
     then
         # Check if file is already checked out
@@ -61,6 +72,7 @@ checkout_function() {
                 cp $REPO/$FILE $DEST
 
                 # Add log entry
+                DATE=$(date "+[%d-%m-%Y | %T]")
                 echo "$DATE $USERNAME checked out the file" >> $REPO/.cms/logs/$FILE
 
                 # Edit file table
@@ -79,4 +91,5 @@ checkout_function() {
         echo -e "$PREFIX The file \"$FILE\" does not exist."
     fi
 
+    return 0
 }

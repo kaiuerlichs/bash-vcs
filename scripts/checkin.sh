@@ -1,12 +1,24 @@
 #!/bin/bash
 
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
+
+
+
+# CHECKIN.SH
+# Takes a repo name and file name as arguments; marks the file as checked in and copies the users version from PWD into the repo
+
+
+
+# Create colour output variables
 PREFIX="\033[0;36m[CMS]\033[0m"
 CYAN="\033[0;36m"
 NOCL="\033[0m"
 
 checkin_function() {
-    DATE=$(date "+[%d-%m-%Y | %T]")
-
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -36,6 +48,7 @@ checkin_function() {
     fi
     FILE=$2
 
+    # Check if file exists
     if [ -e $REPO/$FILE ]
     then
         # Check if file is checked out
@@ -85,6 +98,7 @@ checkin_function() {
                 cp $FILE $REPO/$FILE
 
                 # Append log message
+                DATE=$(date "+[%d-%m-%Y | %T]")
                 echo "$DATE $USERNAME checked the file in with the following message: $MESSAGE" >> $REPO/.cms/logs/$FILE
 
                 # Edit file table entry
@@ -93,8 +107,6 @@ checkin_function() {
                 sed -i "s/$OLDLINE/$NEWLINE/g" $FILE $REPO/.cms/file_table
 
                 echo -e "$PREFIX The file \"$FILE\" has been checked in sucessfully."
-
-
             else
                 echo -e "$PREFIX The file \"$FILE\" was checked out by $CHECKUSER, not you. You cannot check it in."
             fi
@@ -105,4 +117,5 @@ checkin_function() {
         echo -e "$PREFIX The file \"$FILE\" does not exist in the repository.  Did you mean ${CYAN}cms add${NOCL}?" 
     fi
 
+    return 0
 }

@@ -1,9 +1,22 @@
 #!/bin/bash
 
-versions_function() {
-    PREFIX="\033[0;36m[CMS]\033[0m"
-    DATE=$(date "+[%d-%m-%Y | %T]")
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
 
+
+
+# VERSIONS.SH
+# Takes a repo name and file name as arguments; displays all stored versions of a specific file
+
+
+
+# Create colour output variables
+PREFIX="\033[0;36m[CMS]\033[0m"
+
+versions_function() {
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -59,4 +72,6 @@ versions_function() {
             COUNTER=$((COUNTER+1))
         done
     fi
+
+    return 0
 }

@@ -1,9 +1,22 @@
 #!/bin/bash
 
-revert_function() {
-    PREFIX="\033[0;36m[CMS]\033[0m"
-    DATE=$(date "+[%d-%m-%Y | %T]")
+# GROUP MEMBERS
+# ---NAME---            ---Matric. no---
+# Nicole Jackson        2415277
+# Christopher O'May     2418120
+# Kai Uerlichs          2421101       
 
+
+
+# REVERT.SH
+# Takes a repo name a file name; allows the user to revert to previous file version
+
+
+
+# Create colour output variables
+PREFIX="\033[0;36m[CMS]\033[0m"
+
+revert_function() {
     # Check if a repository was specified
     if [ $# -eq 0 ]
     then
@@ -46,7 +59,7 @@ revert_function() {
         return 0;
     fi
 
-    # Create variables
+    # Create relevant variables
     VERSIONS=$REPO/.cms/versions/$FILE/
     VERSION_COUNT=$(ls $VERSIONS | wc -l)
 
@@ -55,7 +68,6 @@ revert_function() {
     then
         mkdir /cms/.tmp/
     fi
-
     TEMP=/cms/.tmp/$FILE
     
     # List all versions
@@ -89,6 +101,7 @@ revert_function() {
 
                 # Add log entry
                 USERNAME=$(whoami)
+                DATE=$(date "+[%d-%m-%Y | %T]")
                 echo "$DATE $USERNAME reverted the file to the following version: $REVERT_VER" >> $REPO/.cms/logs/$FILE
 
                 echo -e "$PREFIX The current file version has been backed up and the file was reverted to a previous version."
@@ -104,4 +117,6 @@ revert_function() {
 
     # Remove temp file
     rm $TEMP
+
+    return 0
 }
