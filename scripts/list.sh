@@ -10,6 +10,7 @@ list_function(){
     if [ $# -eq 0 ]
     then
         echo -e "$PREFIX Listing all repositories..."
+        echo -e "$PREFIX Total number of repositories: $(ls /cms/repositories | wc -l)\n"
         ls /cms/repositories | while read line
         do
             echo -e "$line\tLast edited: $(date -r  /cms/repositories/$line "+%d-%m-%Y %H:%M:%S")"
@@ -35,7 +36,8 @@ list_function(){
             mkdir /cms/.tmp/
         fi
 
-        echo -e "$PREFIX Displaying all files in repository \"$1\"\n"
+        echo -e "$PREFIX Displaying all files in repository \"$1\""
+        echo -e "$PREFIX Total number of files: $(wc -l < $REPO/.cms/file_table)\n"
 
         tmpfile=/cms/.tmp/tmpfile
         echo -e "File name;Checked In/Out;Username;User ID" | cat - $REPO/.cms/file_table > $tmpfile
