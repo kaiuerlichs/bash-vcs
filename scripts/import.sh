@@ -93,7 +93,7 @@ import_function() {
     fi
 
     # Create new repo
-    create_function $2 > /dev/null
+    create_function $2
 
     # Add files to repository
     cd $TMP
@@ -102,7 +102,7 @@ import_function() {
         add_function $2 $file > /dev/null
     done
 
-    echo -e "${PREFIX} The archive needs to be of format .tar.gz or .zip and have the corresponding file extension."
+    echo -e "${PREFIX} The archive has successfully been imported into the new repository!"
 
     # Delete temporary files
     rm -R $TMP
