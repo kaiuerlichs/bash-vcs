@@ -14,7 +14,7 @@ PREFIX="\033[0;36m[CMS]\033[0m"
 . $SCRIPTS/log.sh
 . $SCRIPTS/revert.sh
 . $SCRIPTS/snapshot.sh
-. $SCRIPTS/revert-snap.sh
+. $SCRIPTS/restore.sh
 . $SCRIPTS/forward.sh
 . $SCRIPTS/help.sh
 . $SCRIPTS/versions.sh
@@ -55,8 +55,8 @@ case $COMMAND in
     snap|snapshot|export)
         snapshot_function ${@:2}
         ;;
-    revert-snap)
-        echo "Revert to snapshot version of repo"
+    restore|revert-snap)
+        restore_function ${@:2}
         ;;
     forward|cmd|command)
         forward_function ${@:2}
