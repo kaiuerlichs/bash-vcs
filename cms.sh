@@ -26,7 +26,7 @@ case $COMMAND in
         create_function ${@:2}
         ;;
     import)
-        echo "Import repo from archive"
+        import_function ${@:2}
         ;;
     list|ls|l)
         list_function ${@:2}
