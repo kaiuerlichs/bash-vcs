@@ -202,5 +202,7 @@ export_snapshot() {
             echo -e "$PREFIX Aborting snapshot export... "
         fi 
 
+        # Remove temp file
+        rm $TMP
     fi
 }
