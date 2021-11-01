@@ -17,6 +17,9 @@
 PREFIX="\033[0;36m[CMS]\033[0m"
 
 create_function() {
+
+    echo -e "$PREFIX Please note: The creation of repositories requires root/sudo access."
+
     # Set repo path
     REPOS=/cms/repositories
 
